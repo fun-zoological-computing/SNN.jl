@@ -15,7 +15,7 @@ end
     records::Dict = Dict()
 end
 
-@replace function integrate!(p::IZ, param::IZParameter, dt::Float)
+#=@replace=# function integrate!(p::IZ, param::IZParameter, dt::Float)
     @inbounds for i = 1:N
         v[i] += 0.5f0dt * (0.04f0v[i]^2 + 5f0v[i] + 140f0 - u[i] + I[i])
         v[i] += 0.5f0dt * (0.04f0v[i]^2 + 5f0v[i] + 140f0 - u[i] + I[i])

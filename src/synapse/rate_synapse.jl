@@ -20,7 +20,7 @@ function RateSynapse(pre, post; σ = 0.0, p = 0.0)
     RateSynapse(;@symdict(colptr, I, W, rI, rJ, g)...)
 end
 
-@replace function forward!(c::RateSynapse, param::RateSynapseParameter)
+#=@replace=# function forward!(c::RateSynapse, param::RateSynapseParameter)
     fill!(g, zero(eltype(g)))
     @inbounds for j in 1:(length(colptr) - 1)
         rJj = rJ[j]
@@ -30,7 +30,7 @@ end
     end
 end
 
-@replace function plasticity!(c::RateSynapse, param::RateSynapseParameter, dt::Float, t::Float)
+#=@replace=# function plasticity!(c::RateSynapse, param::RateSynapseParameter, dt::Float, t::Float)
     @inbounds for j in 1:(length(colptr) - 1)
         s_row = colptr[j]:(colptr[j+1] - 1)
         rIW = zero(Float)

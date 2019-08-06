@@ -29,7 +29,7 @@ function FLSynapse(pre, post; σ = 1.5, p = 0.0, α = 1)
     FLSynapse(;@symdict(colptr, I, W, rI, rJ, g, P, q, u, w)...)
 end
 
-@replace function forward!(c::FLSynapse, param::FLSynapseParameter)
+#=@replace=# function forward!(c::FLSynapse, param::FLSynapseParameter)
     z = dot(w, rI)
     g .= z .* u
     fill!(q, zero(Float))
@@ -43,7 +43,7 @@ end
     end
 end
 
-@replace function plasticity!(c::FLSynapse, param::FLSynapseParameter, dt::Float, t::Float)
+#=@replace=# function plasticity!(c::FLSynapse, param::FLSynapseParameter, dt::Float, t::Float)
     C = 1 / (1 + dot(q, rI))
     BLAS.axpy!(C * (f - z), q, w)
     @inbounds for j in 1:(length(colptr) - 1)

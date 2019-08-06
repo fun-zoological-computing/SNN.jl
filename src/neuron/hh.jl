@@ -27,7 +27,7 @@ end
     records::Dict = Dict()
 end
 
-@replace function integrate!(p::HH, param::HHParameter, dt::Float)
+#=@replace=# function integrate!(p::HH, param::HHParameter, dt::Float)
     @inbounds for i = 1:N
         m[i] += dt * (0.32f0 * (13f0 - v[i] + Vt) / (exp((13f0 - v[i] + Vt) / 4f0) - 1f0) * (1f0 - m[i]) -
         0.28f0 * (v[i] - Vt - 40f0) / (exp((v[i] - Vt - 40f0) / 5f0) - 1f0) * m[i])

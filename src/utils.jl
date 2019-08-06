@@ -85,3 +85,13 @@ end
     x *= x; x *= x; x *= x; x *= x
     return x
 end
+
+macro symdict(x...)
+    ex = Expr(:block)
+    push!(ex.args, :(d = Dict{Symbol,Any}()))
+    for p in x
+        push!(ex.args, :(d[$(QuoteNode(p))] = $(esc(p))))
+    end
+    push!(ex.args, :(d))
+    return ex
+end

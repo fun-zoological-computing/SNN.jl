@@ -32,7 +32,7 @@ function SpikingSynapse(pre, post, sym; σ = 0.0, p = 0.0)
     SpikingSynapse(;@symdict(rowptr, colptr, I, J, index, W, fireI, fireJ, g)...)
 end
 
-@replace function forward!(c::SpikingSynapse, param::SpikingSynapseParameter)
+#=@replace=# function forward!(c::SpikingSynapse, param::SpikingSynapseParameter)
     @inbounds for j in 1:(length(colptr) - 1)
         if fireJ[j]
             for s in colptr[j]:(colptr[j+1] - 1)
@@ -42,7 +42,7 @@ end
     end
 end
 
-@replace function plasticity!(c::SpikingSynapse, param::SpikingSynapseParameter, dt::Float, t::Float)
+#=@replace=# function plasticity!(c::SpikingSynapse, param::SpikingSynapseParameter, dt::Float, t::Float)
     @inbounds for j in 1:(length(colptr) - 1)
         if fireJ[j]
             for s in colptr[j]:(colptr[j+1] - 1)

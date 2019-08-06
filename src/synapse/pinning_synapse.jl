@@ -24,7 +24,7 @@ function PINningSynapse(pre, post; σ = 1.5, p = 0.0, α = 1)
     PINningSynapse(;@symdict(colptr, I, W, rI, rJ, g, P, q, f)...)
 end
 
-@replace function forward!(c::PINningSynapse, param::PINningSynapseParameter)
+#=@replace=# function forward!(c::PINningSynapse, param::PINningSynapseParameter)
     fill!(q, zero(Float))
     fill!(g, zero(Float))
     @inbounds for j in 1:(length(colptr) - 1)
@@ -37,7 +37,7 @@ end
     end
 end
 
-@replace function plasticity!(c::PINningSynapse, param::PINningSynapseParameter, dt::Float, t::Float)
+#=@replace=# function plasticity!(c::PINningSynapse, param::PINningSynapseParameter, dt::Float, t::Float)
     C = 1 / (1 + dot(q, rI))
     @inbounds for j in 1:(length(colptr) - 1)
         for s in colptr[j]:(colptr[j+1] - 1)

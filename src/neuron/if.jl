@@ -1,4 +1,5 @@
-@with_kw @trait struct IFParameter
+abstract type AbstractIFParameter end
+@with_kw #=@trait=# struct IFParameter <: AbstractIFParameter
     τm::Float = 20ms
     τe::Float = 5ms
     τi::Float = 10ms
@@ -7,7 +8,8 @@
     El::Float = Vr
 end
 
-@with_kw @trait mutable struct IF
+abstract type AbstractIF end
+@with_kw #=@trait=# mutable struct IF <: AbstractIF
     param::IFParameter = IFParameter()
     N::Int = 100
     v::Vector{Float} = param.Vr + rand(N) * (param.Vt - param.Vr)
@@ -18,7 +20,7 @@ end
     records::Dict = Dict()
 end
 
-@replace function integrate!(p::IF, param::IFParameter, dt::Float)
+#=@replace=# function integrate!(p::IF, param::IFParameter, dt::Float)
     @inbounds for i = 1:N
         v[i] += dt * (ge[i] + gi[i] - (v[i] - El) + I[i]) / τm
         ge[i] += dt * -ge[i] / τe

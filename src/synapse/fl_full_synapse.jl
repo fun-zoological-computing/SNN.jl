@@ -26,14 +26,14 @@ function FLSynapse(pre, post; σ = 1.5, p = 0.0, α = 1)
     FLSynapse(;@symdict(W, rI, rJ, g, P, q, u, w)...)
 end
 
-@replace function forward!(c::FLSynapse, param::FLSynapseParameter)
+#=@replace=# function forward!(c::FLSynapse, param::FLSynapseParameter)
     z = dot(w, rI)
     BLAS.A_mul_B!(q, P, rJ)
     BLAS.A_mul_B!(g, W, rJ)
     BLAS.axpy!(z, u, g)
 end
 
-@replace function plasticity!(c::FLSynapse, param::FLSynapseParameter, dt::Float, t::Float)
+#=@replace=# function plasticity!(c::FLSynapse, param::FLSynapseParameter, dt::Float, t::Float)
     C = 1 / (1 + dot(q, rI))
     BLAS.axpy!(C * (f - z), q, w)
     BLAS.ger!(-C, q, q, P)

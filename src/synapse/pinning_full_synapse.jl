@@ -21,12 +21,12 @@ function PINningSynapse(pre, post; σ = 1.5, p = 0.0, α = 1)
     PINningSynapse(;@symdict(W, rI, rJ, g, P, q, f)...)
 end
 
-@replace function forward!(c::PINningSynapse, param::PINningSynapseParameter)
+#=@replace=# function forward!(c::PINningSynapse, param::PINningSynapseParameter)
     BLAS.A_mul_B!(q, P, rJ)
     BLAS.A_mul_B!(g, W, rJ)
 end
 
-@replace function plasticity!(c::PINningSynapse, param::PINningSynapseParameter, dt::Float, t::Float)
+#=@replace=# function plasticity!(c::PINningSynapse, param::PINningSynapseParameter, dt::Float, t::Float)
     C = 1 / (1 + dot(q, rI))
     BLAS.ger!(C, f - g, q, W)
     BLAS.ger!(-C, q, q, P)

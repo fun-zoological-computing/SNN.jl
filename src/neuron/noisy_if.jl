@@ -1,13 +1,13 @@
-@with_kw @mixin immutable NoisyIFParameter <: IFParameter
+@with_kw #=@mixin=# struct NoisyIFParameter <: AbstractIFParameter
     σ::Float = 0
 end
 
-@with_kw @mixin type NoisyIF <: IF
+@with_kw #=@mixin=# mutable struct NoisyIF <: AbstractIF
     param::NoisyIFParameter = NoisyIFParameter()
     randncache::Vector{Float} = randn(N)
 end
 
-@replace function integrate!(p::NoisyIF, param::NoisyIFParameter, dt::Float)
+#=@replace=# function integrate!(p::NoisyIF, param::NoisyIFParameter, dt::Float)
     randn!(randncache)
     @inbounds for i = 1:N
         v[i] += dt * (ge[i] + gi[i] - (v[i] - El) + I[i] + σ / √dt * randncache[i]) / τm
