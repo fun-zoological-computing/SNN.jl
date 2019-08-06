@@ -1,4 +1,4 @@
-@export_const Float begin
+#@export_const SNNFloat begin
     metre = 1e2
     meter = metre
     cm = metre / 1e2
@@ -27,4 +27,4 @@
     msiemens = mS
     nS = siemens / 1e9
     nsiemens = nS
-end
+#end

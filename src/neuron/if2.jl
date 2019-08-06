@@ -1,13 +1,13 @@
-@withkw @mixin immutable IF2Parameter <: IFParameter
-    Ee::Float = 0mV
-    Ei::Float = 0mV
+@with_kw #=@mixin=# struct IF2Parameter <: AbstractIFParameter
+    Ee::SNNFloat = 0mV
+    Ei::SNNFloat = 0mV
 end
 
-@withkw @mixin type IF2 <: IF
+@with_kw #=@mixin=# mutable struct IF2 <: AbstractIF
     param::IF2Parameter = IF2Parameter()
 end
 
-@replace function integrate!(p::IF2, param::IF2Parameter, dt::Float)
+#=@replace=# function integrate!(p::IF2, param::IF2Parameter, dt::SNNFloat)
     @inbounds for i = 1:N
         v[i] += dt * (ge[i] * (Ee - v[i]) + gi[i] * (Ei - v[i]) - (v[i] - El)) / τm
         ge[i] += dt * -ge[i] / τe

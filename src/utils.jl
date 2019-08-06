@@ -7,16 +7,21 @@ function connect!(c, j, i, σ = 1e-6)
 end
 
 function dsparse(A)
-    At = A'
+    @show A
+    At = sparse(A')
     colptr = A.colptr
     rowptr = At.colptr
+    @show colptr
     I = rowvals(A)
     V = nonzeros(A)
-    J = zeros(I)
+    #J = fill!(similar(I), 0)
+    J = zeros(size(I))
+    @show J
+    # FIXME: Breaks when A is empty
     for j in 1:(length(colptr) - 1)
         J[colptr[j]:(colptr[j+1] - 1)] = j
     end
-    index = zeros(I); coldown = zeros(eltype(index), length(colptr) - 1)
+    index = zeros(size(I)); coldown = zeros(eltype(index), length(colptr) - 1)
     for i in 1:(length(rowptr) - 1)
         for st in rowptr[i]:(rowptr[i+1] - 1)
             j = At.rowval[st]
@@ -71,17 +76,27 @@ function clear_records(obj)
     end
 end
 
-@inline function exp32(x::Float)
+@inline function exp32(x::SNNFloat)
     x = ifelse(x < -10f0, -32f0, x)
     x = 1f0 + x / 32f0
     x *= x; x *= x; x *= x; x *= x; x *= x
     return x
 end
 
-@inline function exp256(x::Float)
+@inline function exp256(x::SNNFloat)
     x = ifelse(x < -10f0, -256f0, x)
     x = 1.0 + x / 256.0
     x *= x; x *= x; x *= x; x *= x
     x *= x; x *= x; x *= x; x *= x
     return x
+end
+
+macro symdict(x...)
+    ex = Expr(:block)
+    push!(ex.args, :(d = Dict{Symbol,Any}()))
+    for p in x
+        push!(ex.args, :(d[$(QuoteNode(p))] = $(esc(p))))
+    end
+    push!(ex.args, :(d))
+    return ex
 end
