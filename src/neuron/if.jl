@@ -1,4 +1,4 @@
-@withkw @trait immutable IFParameter
+@with_kw @trait struct IFParameter
     τm::Float = 20ms
     τe::Float = 5ms
     τi::Float = 10ms
@@ -7,7 +7,7 @@
     El::Float = Vr
 end
 
-@withkw @trait type IF
+@with_kw @trait mutable struct IF
     param::IFParameter = IFParameter()
     N::Int = 100
     v::Vector{Float} = param.Vr + rand(N) * (param.Vt - param.Vr)

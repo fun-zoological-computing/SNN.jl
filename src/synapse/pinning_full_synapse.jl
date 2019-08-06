@@ -1,7 +1,7 @@
-immutable PINningSynapseParameter
+struct PINningSynapseParameter
 end
 
-@withkw type PINningSynapse
+@with_kw mutable struct PINningSynapse
     param::PINningSynapseParameter = PINningSynapseParameter()
     W::Matrix{Float}  # synaptic weight
     rI::Vector{Float} # postsynaptic rate

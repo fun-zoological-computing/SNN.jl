@@ -1,7 +1,7 @@
-immutable PINningSynapseParameter
+struct PINningSynapseParameter
 end
 
-@withkw type PINningSynapse
+@with_kw mutable struct PINningSynapse
     param::PINningSynapseParameter = PINningSynapseParameter()
     colptr::Vector{Int} # column pointer of sparse W
     I::Vector{Int}      # postsynaptic index of W

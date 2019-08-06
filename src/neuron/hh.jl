@@ -1,4 +1,4 @@
-@withkw immutable HHParameter
+@with_kw struct HHParameter
     Cm::Float = 1uF * cm^(-2) * 20000um^2
     gl::Float = 5e-5siemens * cm^(-2) * 20000um^2
     El::Float = -65mV
@@ -13,7 +13,7 @@
     Ei::Float = -80mV
 end
 
-@withkw type HH
+@with_kw mutable struct HH
     param::HHParameter = HHParameter()
     N::Int = 100
     v::Vector{Float} = param.El + 5(randn(N) - 1)

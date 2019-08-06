@@ -1,4 +1,4 @@
-@withkw immutable SpikingSynapseParameter
+@with_kw struct SpikingSynapseParameter
     τpre::Float = 20ms
     τpost::Float = 20ms
     Wmax::Float = 0.01
@@ -6,7 +6,7 @@
     ΔApost::Float = -ΔApre * τpre / τpost * 1.05
 end
 
-@withkw type SpikingSynapse
+@with_kw mutable struct SpikingSynapse
     param::SpikingSynapseParameter = SpikingSynapseParameter()
     rowptr::Vector{Int} # row pointer of sparse W
     colptr::Vector{Int} # column pointer of sparse W

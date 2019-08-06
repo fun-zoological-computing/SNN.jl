@@ -1,8 +1,8 @@
-@withkw immutable RateSynapseParameter
+@with_kw struct RateSynapseParameter
     lr::Float = 1e-3
 end
 
-@withkw type RateSynapse
+@with_kw mutable struct RateSynapse
     param::RateSynapseParameter = RateSynapseParameter()
     colptr::Vector{Int} # column pointer of sparse W
     I::Vector{Int}      # postsynaptic index of W

@@ -1,9 +1,9 @@
-@withkw @mixin immutable IF2Parameter <: IFParameter
+@with_kw @mixin immutable IF2Parameter <: IFParameter
     Ee::Float = 0mV
     Ei::Float = 0mV
 end
 
-@withkw @mixin type IF2 <: IF
+@with_kw @mixin type IF2 <: IF
     param::IF2Parameter = IF2Parameter()
 end
 

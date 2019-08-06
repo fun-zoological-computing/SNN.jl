@@ -1,7 +1,7 @@
-immutable FLSynapseParameter
+struct FLSynapseParameter
 end
 
-@withkw type FLSynapse
+@with_kw mutable struct FLSynapse
     param::FLSynapseParameter = FLSynapseParameter()
     W::Matrix{Float}  # synaptic weight
     rI::Vector{Float} # postsynaptic rate

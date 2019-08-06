@@ -1,7 +1,7 @@
-immutable FLSynapseParameter
+struct FLSynapseParameter
 end
 
-@withkw type FLSynapse
+@with_kw mutable struct FLSynapse
     param::FLSynapseParameter = FLSynapseParameter()
     colptr::Vector{Int} # column pointer of sparse W
     I::Vector{Int}      # postsynaptic index of W

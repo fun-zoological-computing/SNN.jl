@@ -1,7 +1,7 @@
-immutable RateParameter
+struct RateParameter
 end
 
-@withkw type Rate
+@with_kw mutable struct Rate
     param::RateParameter = RateParameter()
     N::Int = 100
     x::Vector{Float} = 0.5randn(N)

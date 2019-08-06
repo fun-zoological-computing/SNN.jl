@@ -1,7 +1,8 @@
 module SNN
 
 using Reexport
-@reexport using Utils
+using Parameters
+#@reexport using Utils
 
 const Int = Int32
 const Float = Float32

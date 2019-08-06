@@ -1,8 +1,8 @@
-@withkw @trait immutable PoissonParameter
+@with_kw @trait struct PoissonParameter
     rate::Float = 1Hz
 end
 
-@withkw @trait type Poisson
+@with_kw @trait mutable struct Poisson
     param::PoissonParameter = PoissonParameter()
     N::Int = 100
     randcache::Vector{Float} = rand(N)

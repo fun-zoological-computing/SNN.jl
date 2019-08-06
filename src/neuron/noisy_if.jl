@@ -1,8 +1,8 @@
-@withkw @mixin immutable NoisyIFParameter <: IFParameter
+@with_kw @mixin immutable NoisyIFParameter <: IFParameter
     σ::Float = 0
 end
 
-@withkw @mixin type NoisyIF <: IF
+@with_kw @mixin type NoisyIF <: IF
     param::NoisyIFParameter = NoisyIFParameter()
     randncache::Vector{Float} = randn(N)
 end

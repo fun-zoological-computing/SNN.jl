@@ -1,11 +1,11 @@
-@withkw immutable IZParameter
+@with_kw struct IZParameter
     a::Float = 0.01
     b::Float = 0.2
     c::Float = -65
     d::Float = 2
 end
 
-@withkw type IZ
+@with_kw mutable struct IZ
     param::IZParameter = IZParameter()
     N::Int = 100
     v::Vector{Float} = fill(-65.0, N)
