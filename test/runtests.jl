@@ -1,4 +1,4 @@
-using Plots, SNN; plotly()
+using SNN, Plots; plotly()
 include("../examples/chain.jl")
 include("../examples/hh_net.jl")
 include("../examples/hh_neuron.jl")

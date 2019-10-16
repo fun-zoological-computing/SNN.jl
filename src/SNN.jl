@@ -2,6 +2,7 @@ module SNN
 
 using Reexport
 using Parameters
+using SparseArrays
 #@reexport using Utils
 
 const Int = Int32

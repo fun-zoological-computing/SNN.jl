@@ -26,6 +26,7 @@ end
 
 function SpikingSynapse(pre, post, sym; σ = 0.0, p = 0.0)
     w = σ * sprand(post.N, pre.N, p)
+    @show w
     rowptr, colptr, I, J, index, W = dsparse(w)
     fireI, fireJ = post.fire, pre.fire
     g = getfield(post, sym)

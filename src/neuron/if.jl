@@ -12,7 +12,7 @@ abstract type AbstractIF end
 @with_kw #=@trait=# mutable struct IF <: AbstractIF
     param::IFParameter = IFParameter()
     N::Int = 100
-    v::Vector{Float} = param.Vr + rand(N) * (param.Vt - param.Vr)
+    v::Vector{Float} = param.Vr .+ rand(N) .* (param.Vt - param.Vr)
     ge::Vector{Float} = zeros(N)
     gi::Vector{Float} = zeros(N)
     fire::Vector{Bool} = zeros(Bool, N)

@@ -7,16 +7,20 @@ function connect!(c, j, i, σ = 1e-6)
 end
 
 function dsparse(A)
-    At = A'
+    @show A
+    At = sparse(A')
     colptr = A.colptr
     rowptr = At.colptr
+    @show colptr
     I = rowvals(A)
     V = nonzeros(A)
-    J = zeros(I)
+    J = zeros(size(I))
+    @show J
+    # FIXME: Breaks when A is empty
     for j in 1:(length(colptr) - 1)
         J[colptr[j]:(colptr[j+1] - 1)] = j
     end
-    index = zeros(I); coldown = zeros(eltype(index), length(colptr) - 1)
+    index = zeros(size(I)); coldown = zeros(eltype(index), length(colptr) - 1)
     for i in 1:(length(rowptr) - 1)
         for st in rowptr[i]:(rowptr[i+1] - 1)
             j = At.rowval[st]
