@@ -1,8 +1,12 @@
 # Installation
 
 ```julia
+Pkg.add(PackageSpec(url="https://github.com/fun-zoological-computing/SNN.jl"))
+```
+```julia
 Pkg.clone("https://github.com/fun-zoological-computing/SNN.jl.git")
 Pkg.build("SNN")
+
 ```
 
 # Documentation
